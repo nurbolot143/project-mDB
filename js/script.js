@@ -12,15 +12,40 @@
 
 5) Добавить нумерацию выведенных фильмов */
 
-'use strict';
+"use strict";
+
+const adv = document.querySelectorAll(".promo__adv img");
+const genre = document.querySelector(".promo__genre");
+const background = document.querySelector(".promo__bg");
+const movieList = document.querySelector(".promo__interactive-list");
+
+adv.forEach((img) => img.remove());
+
+genre.textContent = "Драма";
+
+background.style.cssText =
+  "background: url('img/bg.jpg') no-repeat; background-position: center; background-size: cover";
 
 const movieDB = {
-    movies: [
-        "Логан",
-        "Лига справедливости",
-        "Ла-ла лэнд",
-        "Одержимость",
-        "Скотт Пилигрим против..."
-    ]
+  movies: [
+    "Логан",
+    "Лига справедливости",
+    "Ла-ла лэнд",
+    "Одержимость",
+    "Скотт Пилигрим против...",
+  ],
+  sort: function () {
+    this.movies.sort();
+  },
+  create: function () {
+    this.movies.forEach((movie) => {
+      const li = document.createElement("li");
+      li.classList.add("promo__interactive-item");
+      li.innerHTML = movie;
+      movieList.append(li);
+    });
+  },
 };
 
+movieDB.sort();
+movieDB.create();
