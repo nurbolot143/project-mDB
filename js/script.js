@@ -23,8 +23,7 @@ adv.forEach((img) => img.remove());
 
 genre.textContent = "Драма";
 
-background.style.cssText =
-  "background: url('img/bg.jpg') no-repeat; background-position: center; background-size: cover";
+background.style.backgroundImage = "url('img/bg.jpg')";
 
 const movieDB = {
   movies: [
@@ -34,18 +33,14 @@ const movieDB = {
     "Одержимость",
     "Скотт Пилигрим против...",
   ],
-  sort: function () {
-    this.movies.sort();
-  },
-  create: function () {
-    this.movies.forEach((movie) => {
-      const li = document.createElement("li");
-      li.classList.add("promo__interactive-item");
-      li.innerHTML = movie;
-      movieList.append(li);
-    });
-  },
 };
 
-movieDB.sort();
-movieDB.create();
+movieDB.movies.sort();
+
+movieDB.movies.forEach((movie, idx) => {
+  movieList.innerHTML += `
+    <li class='promo__interactive-item'> 
+      ${idx + 1} ${movie} 
+      <div class='delete'></div>
+    </li>`;
+});
